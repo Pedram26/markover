@@ -80,7 +80,7 @@ def argument_handler():
     parser.add_argument("-n", "--length", help="Length of text",
                         required=True, type=int)
     parser.add_argument("-c", "--chunk", help="length of chunks",
-                        default=15, type=int)
+                        default=10, type=int)
     args = parser.parse_args()
     return(args.text, args.length, args.chunk)
 
