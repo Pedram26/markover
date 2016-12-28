@@ -1,0 +1,92 @@
+import random
+import argparse
+import os
+
+
+def get_kgram(text, ptr, k):
+    result = ''
+    if ptr + k > len(text):
+        x = len(text[ptr:])
+        result += (text[ptr:] + text[:(k - x)])
+    else:
+        result += text[ptr: ptr + k]
+    return result
+
+
+def process_character(m, text, ptr, k):
+    info = get_kgram(text, ptr, k)
+    if info in m.keys():
+        if ptr + k >= len(text):
+            x = len(text[ptr:])
+            if text[k - x] in m[info].keys():
+                m[info][text[k - x]] += 1
+            else:
+                m[info][text[k - x]] = 1
+        elif text[ptr + k] in m[info].keys():
+            m[info][text[ptr + k]] += 1
+        else:
+            m[info][text[ptr + k]] = 1
+    else:
+        if ptr + k >= len(text):
+            x = len(text[ptr:])
+            m[info] = {text[(k - x)]: 1}
+        else:
+            m[info] = {text[ptr + k]: 1}
+
+
+def build_markov_model(text, k):
+    m = {}
+    for i in range(len(text)):
+        process_character(m, text, i, k)
+    return m
+
+
+def next_character_frequency(m, kgram, c):
+    result = 0
+    key = m.keys()
+    if len(kgram) > len(key[0]):
+        return 0
+    else:
+        result += m[kgram][c]
+    return result
+
+
+def random_character(m, kgram):
+    if len(m[kgram].keys()) == 1:
+        return "".join(m[kgram].keys())
+    else:
+        x = [i for i in m[kgram] for j in range(m[kgram][i])]
+        return random.choice(x)
+
+
+def generate_random_text(m, N):
+    result = ""
+    seed_kgram = random.choice(m.keys())
+    result += seed_kgram
+    while len(result) != N:
+        next_char = random_character(m, seed_kgram)
+        new_kgram = seed_kgram
+        result += next_char
+        seed_kgram = new_kgram[1:] + next_char
+    return result
+
+
+def argument_handler():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-t", "--text",
+                        help="Training mode", required=True, type=str)
+    parser.add_argument("-n", "--length", help="Length of text",
+                        required=True, type=int)
+    parser.add_argument("-c", "--chunk", help="length of chunks",
+                        default=15, type=int)
+    args = parser.parse_args()
+    return(args.text, args.length, args.chunk)
+
+
+if __name__ == '__main__':
+    text, length, chunk = argument_handler()
+    with open(text, 'r') as f:
+        file = f.read()
+    markov_file = build_markov_model(file, chunk)
+    with open(os.path.dirname(text) + "/output.txt", 'w') as f:
+        f.write(generate_random_text(markov_file, length))
