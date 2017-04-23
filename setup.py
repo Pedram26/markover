@@ -7,7 +7,7 @@ setup(
   name = 'markover',
   packages = ['markover'], # this must be the same as the name above
   scripts = ['markover/markover'],
-  version = '0.8',
+  version = '0.9',
   description = 'Natural Language Generator with Markov',
   long_description = long_description,
   author = 'Pedram Pourdavood',
