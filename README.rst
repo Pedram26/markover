@@ -14,7 +14,7 @@ Dependencies
 
 Install
 -------
-- Install via pip: `$ pip install markover`
+- Install via pip: ``$ pip install markover``
 
 Usage
 -----
