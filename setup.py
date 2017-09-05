@@ -13,7 +13,7 @@ setup(
   author = 'Pedram Pourdavood',
   author_email = 'pedrampourdavood@gmail.com',
   url = 'https://github.com/Pedram26/markover', # use the URL to the github repo
-  download_url = 'https://github.com/pedram26/markover/tarball/0.4',
+  download_url = 'https://github.com/pedram26/markover/archive/0.5.tar.gz',
   keywords = ['file', 'text processing', 'natural language' 'markov'], # arbitrary keywords
-  classifiers = [],
+  classifiers = []
 )
