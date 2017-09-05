@@ -13,7 +13,7 @@ setup(
   author = 'Pedram Pourdavood',
   author_email = 'pedrampourdavood@gmail.com',
   url = bytes('https://github.com/Pedram26/markover', 'utf-8'), # use the URL to the github repo
-  download_url = bytes('https://github.com/pedram26/markover/archive/1.1.tar.gz', 'utf-8'),
+  download_url = bytes('https://github.com/pedram26/markover/archive/1.2.tar.gz', 'utf-8'),
   keywords = ["file", "text processing", "natural language", "markov"], # arbitrary keywords
   classifiers = []
 )
