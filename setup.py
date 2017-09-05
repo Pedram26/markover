@@ -12,8 +12,8 @@ setup(
   long_description = long_description,
   author = 'Pedram Pourdavood',
   author_email = 'pedrampourdavood@gmail.com',
-  url = bytes('https://github.com/Pedram26/markover', 'utf-8'), # use the URL to the github repo
-  download_url = bytes('https://github.com/pedram26/markover/archive/1.2.tar.gz', 'utf-8'),
+  url = b'https://github.com/Pedram26/markover'.decode("utf-8"), # use the URL to the github repo
+  download_url = b'https://github.com/pedram26/markover/archive/1.3.tar.gz'.decode("utf-8"),
   keywords = ["file", "text processing", "natural language", "markov"], # arbitrary keywords
   classifiers = []
 )
